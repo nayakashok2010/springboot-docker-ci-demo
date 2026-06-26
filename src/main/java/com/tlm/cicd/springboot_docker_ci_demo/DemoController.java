@@ -8,6 +8,8 @@ public class DemoController {
 
     @GetMapping("/")
     public String demo() {
-        return "Hi TLM team, welcome to demo";
+
+        String sqlQuery = "select empid, name from employee where id=1";
+        return "Hi TLM team, welcome to vulnerability demo";
     }
 }
