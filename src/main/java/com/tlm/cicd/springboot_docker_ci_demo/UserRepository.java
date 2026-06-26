@@ -9,7 +9,7 @@ public class UserRepository {
     public List<User> searchUser(String username) {
 
         String sql = "SELECT * FROM users WHERE username = '" + username + "'";
-        System.out.println("sql -- " + sql);
+
         return jdbcTemplate.query(sql,
                 new BeanPropertyRowMapper<>(User.class));
     }
