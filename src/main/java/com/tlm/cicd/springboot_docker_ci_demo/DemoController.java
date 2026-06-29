@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,11 +23,26 @@ public class DemoController {
     }
 
     @GetMapping("/users")
-    public List<User> getUsers(String username) {
+    public List<Employee> getUsers(String username) {
 
-        String sql = "SELECT * FROM users WHERE username='" + username + "'";
-
+        String sql = "SELECT * FROM employee WHERE name='" + username + "'";
+        System.out.println("sql query to exit : " + sql);
         return jdbcTemplate.query(sql,
-                new BeanPropertyRowMapper<>(User.class));
+                new BeanPropertyRowMapper<>(Employee.class));
+
+    }
+
+    @GetMapping("/emp")
+    public List<Employee> getEmployees(String username) {
+
+        String sql = "SELECT * FROM employee WHERE name = ?";
+
+        return  jdbcTemplate.query(
+                "SELECT * FROM employee WHERE name = ?",
+                new BeanPropertyRowMapper<>(Employee.class),
+                username
+        );
     }
 }
+
+
