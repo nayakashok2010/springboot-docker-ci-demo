@@ -13,24 +13,15 @@ import java.util.List;
 public class DemoController {
     @Autowired
     JdbcTemplate jdbcTemplate;
-    String password = "Admin@123";
-    String apiKey = "sk_live_xxxxxxxxx";
+    //String password = "Admin@123";
+    //String api_Key = "sk_live_xxxxxxxxx";
     @GetMapping("/")
     public String demo() {
 
-        String sqlQuery = "select empid, name from employee where id=1";
         return "Hi TLM team, welcome to vulnerability demo";
     }
 
-    @GetMapping("/users")
-    public List<Employee> getUsers(String username) {
 
-        String sql = "SELECT * FROM employee WHERE name='" + username + "'";
-        System.out.println("sql query to exit : " + sql);
-        return jdbcTemplate.query(sql,
-                new BeanPropertyRowMapper<>(Employee.class));
-
-    }
 
     @GetMapping("/emp")
     public List<Employee> getEmployees(String username) {
